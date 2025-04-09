@@ -1,0 +1,203 @@
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local keyRequired = "HB1b3kmGW9cBPyBm"
+local keySiteURL = "https://discord.gg/5Cb8DB3sAV"
+local discordInvite = "https://discord.gg/5Cb8DB3sAV"
+
+--🎬 Loading GUI
+local loadingGui = Instance.new("ScreenGui", playerGui)
+loadingGui.Name = "LoadingUI"
+loadingGui.IgnoreGuiInset = true
+
+local loadingFrame = Instance.new("Frame", loadingGui)
+loadingFrame.Size = UDim2.new(0, 150, 0, 150)
+loadingFrame.Position = UDim2.new(0.5, -75, 0.5, -75)
+loadingFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
+loadingFrame.BackgroundTransparency = 1
+
+local corner = Instance.new("UICorner", loadingFrame)
+corner.CornerRadius = UDim.new(0, 20)
+
+--🌟 Spinning Discord Logo
+local logo = Instance.new("ImageLabel", loadingFrame)
+logo.Size = UDim2.new(1, -30, 1, -30)
+logo.Position = UDim2.new(0, 15, 0, 15)
+logo.BackgroundTransparency = 1
+logo.Image = "rbxassetid://134438845567210"
+
+-- หมุนโลโก้
+local rotation = 0
+local connection = RunService.RenderStepped:Connect(function(dt)
+	rotation = rotation + 180 * dt
+	logo.Rotation = rotation % 360
+end)
+
+-- Tween Fade In
+TweenService:Create(loadingFrame, TweenInfo.new(0.8), {BackgroundTransparency = 0.1}):Play()
+wait(3.5)
+
+-- Fade Out
+TweenService:Create(loadingFrame, TweenInfo.new(0.5), {BackgroundTransparency = 1}):Play()
+wait(0.5)
+connection:Disconnect()
+loadingGui:Destroy()
+
+--🔐 Key UI
+local keyGui = Instance.new("ScreenGui", playerGui)
+keyGui.Name = "KeySystem"
+
+local mainFrame = Instance.new("Frame", keyGui)
+mainFrame.Size = UDim2.new(0, 350, 0, 220)
+mainFrame.Position = UDim2.new(0.5, -175, 0.5, -110)
+mainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
+mainFrame.BackgroundTransparency = 1
+mainFrame.BorderSizePixel = 0
+Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0, 15)
+
+-- Fade In UI
+TweenService:Create(mainFrame, TweenInfo.new(0.7), {BackgroundTransparency = 0.05}):Play()
+
+local title = Instance.new("TextLabel", mainFrame)
+title.Size = UDim2.new(1, 0, 0, 40)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.Text = "🔑 Key System 🔑"
+title.TextColor3 = Color3.fromRGB(255, 105, 180)
+title.BackgroundTransparency = 1
+title.Font = Enum.Font.GothamBlack
+title.TextSize = 20
+
+local keyBox = Instance.new("TextBox", mainFrame)
+keyBox.Size = UDim2.new(0.8, 0, 0, 30)
+keyBox.Position = UDim2.new(0.1, 0, 0.3, 0)
+keyBox.PlaceholderText = "Enter Key..."
+keyBox.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
+keyBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyBox.Text = ""
+keyBox.Font = Enum.Font.Gotham
+keyBox.TextSize = 16
+Instance.new("UICorner", keyBox).CornerRadius = UDim.new(0, 8)
+
+local submitBtn = Instance.new("TextButton", mainFrame)
+submitBtn.Size = UDim2.new(0.4, -5, 0, 30)
+submitBtn.Position = UDim2.new(0.1, 0, 0.55, 0)
+submitBtn.Text = "Submit"
+submitBtn.BackgroundColor3 = Color3.fromRGB(80, 0, 255)
+submitBtn.TextColor3 = Color3.new(1,1,1)
+submitBtn.Font = Enum.Font.GothamBold
+submitBtn.TextSize = 16
+Instance.new("UICorner", submitBtn).CornerRadius = UDim.new(0, 8)
+
+local getKeyBtn = Instance.new("TextButton", mainFrame)
+getKeyBtn.Size = UDim2.new(0.4, -5, 0, 30)
+getKeyBtn.Position = UDim2.new(0.5, 5, 0.55, 0)
+getKeyBtn.Text = "Get Key"
+getKeyBtn.BackgroundColor3 = Color3.fromRGB(255, 60, 100)
+getKeyBtn.TextColor3 = Color3.new(1,1,1)
+getKeyBtn.Font = Enum.Font.GothamBold
+getKeyBtn.TextSize = 16
+Instance.new("UICorner", getKeyBtn).CornerRadius = UDim.new(0, 8)
+
+local discordBtn = Instance.new("TextButton", mainFrame)
+discordBtn.Size = UDim2.new(0.8, 0, 0, 30)
+discordBtn.Position = UDim2.new(0.1, 0, 0.75, 0)
+discordBtn.Text = "Join our Discord Server"
+discordBtn.BackgroundColor3 = Color3.fromRGB(0, 130, 255)
+discordBtn.TextColor3 = Color3.new(1,1,1)
+discordBtn.Font = Enum.Font.GothamBold
+discordBtn.TextSize = 16
+Instance.new("UICorner", discordBtn).CornerRadius = UDim.new(0, 8)
+
+local closeBtn = Instance.new("TextButton", mainFrame)
+closeBtn.Size = UDim2.new(0, 30, 0, 30)
+closeBtn.Position = UDim2.new(1, -35, 0, 5)
+closeBtn.Text = "X"
+closeBtn.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
+closeBtn.TextColor3 = Color3.new(1, 1, 1)
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.TextSize = 16
+Instance.new("UICorner", closeBtn).CornerRadius = UDim.new(0, 6)
+
+closeBtn.MouseButton1Click:Connect(function()
+	-- เอฟเฟกต์ Fade Out ก่อนปิด
+	TweenService:Create(mainFrame, TweenInfo.new(0.4), {BackgroundTransparency = 1}):Play()
+	wait(0.4)
+	keyGui:Destroy()
+
+	-- แจ้งเตือนว่าออกแล้ว
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "Key System",
+		Text = "❌ คุณได้ทำการยกเลิกแล้ว.",
+		Duration = 3
+	})
+end)
+
+
+local SoundService = game:GetService("SoundService")
+
+-- เสียงเมื่อใส่ key ถูกต้อง
+local successSound = Instance.new("Sound")
+successSound.SoundId = "rbxassetid://122222216"  -- เสียงคลิก
+successSound.Volume = 10
+successSound.Parent = Workspace
+
+local errorSound = Instance.new("Sound")
+errorSound.SoundId = "rbxassetid://130249507"  -- เสียงผิดพลาด
+errorSound.Volume = 10
+errorSound.Parent = Workspace
+
+
+-- 📌 Events
+submitBtn.MouseButton1Click:Connect(function()
+    if keyBox.Text == keyRequired then
+        -- Fade Out UI
+        TweenService:Create(mainFrame, TweenInfo.new(0.5), {BackgroundTransparency = 1}):Play()
+        wait(0.5)
+        keyGui:Destroy()
+
+        -- ✅ แจ้งเตือน
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Key System",
+            Text = "✅ ทำการใส่ key สำเร็จ",
+            Duration = 3
+        })
+
+        -- ▶️ รันสคริปต์
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/konncott/Run888X/refs/heads/main/MaisungX",true))()
+
+        -- เล่นเสียงเมื่อใส่ key สำเร็จ
+        successSound:Play()
+        successSound:Destroy()  -- ลบเสียงหลังจากเล่นเสร็จ
+    else
+        keyBox.Text = ""
+        keyBox.PlaceholderText = "❌ ใส่ Key ผิดพลาดครับไอสัส!"
+        
+        -- เล่นเสียงเมื่อใส่ key ผิด
+        errorSound:Play()
+        errorSound:Destroy()  -- ลบเสียงหลังจากเล่นเสร็จ
+    end
+end)
+
+
+
+
+getKeyBtn.MouseButton1Click:Connect(function()
+	setclipboard(keySiteURL)
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = "Get Key",
+		Text = "Link copied!",
+		Duration = 3
+	})
+end)
+
+discordBtn.MouseButton1Click:Connect(function()
+	setclipboard(discordInvite)
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = "Discord",
+		Text = "Invite copied!",
+		Duration = 3
+	})
+end)
