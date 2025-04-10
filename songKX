@@ -4,7 +4,7 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
-local keyRequired = "95m5xCx3HiYg"
+local keyRequired = "179"
 local keySiteURL = "https://discord.gg/5Cb8DB3sAV"
 local discordInvite = "https://discord.gg/5Cb8DB3sAV"
 
@@ -166,7 +166,7 @@ submitBtn.MouseButton1Click:Connect(function()
         })
 
         -- ▶️ รันสคริปต์
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/konncott/Run888X/refs/heads/main/MaisungX",true))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/konncott/Bobm/refs/heads/main/Carbom",true))()
 
         -- เล่นเสียงเมื่อใส่ key สำเร็จ
         successSound:Play()
