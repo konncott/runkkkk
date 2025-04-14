@@ -7,7 +7,7 @@ local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
 -- 🔧 Config
-local keysURL = "https://raw.githubusercontent.com/konncott/KKYRUN/refs/heads/main/KErun.lua"  
+local keysURL = "https://raw.githubusercontent.com/konncott/Key/main/Keyrunnew.lua?v=" .. tick()  
 local scriptURL = "https://raw.githubusercontent.com/konncott/Run888X/refs/heads/main/MaisungX"   
 local keySiteURL = "https://discord.gg/5Cb8DB3sAV"
 local discordInvite = "https://discord.gg/5Cb8DB3sAV"
